@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "env": {
+    "node": false,
+    "browser": true
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "js/main.js"
+      ],
+      "globals": {
+        "data": "readonly"
+      }
+    }
+  ]
+}
