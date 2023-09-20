@@ -1,29 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Journal</title>
-    <link rel="icon" href="images/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <header>
-      <div class="container"></div>
-    </header>
-    <main class="container">
-      <div data-view="entry-form"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Journal</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h1>Code Journal</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container" data-view="entry-form">
+      <form class="form-container">
+        <div class="row">
+          <div class="column-full">
+            <h1>New Entry</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img class="img-preview" src="./images/placeholder-image-square.jpg" alt="image preview" />
+          </div>
+          <div class="column-half">
+            <div class="form-option">
+              <label class="form-label" for="title">Title</label>
+              <input class="input-field" id="title" type="text" name="title" required />
+            </div>
+            <div class="form-option">
+              <label class="form-label" for="photo-url">Photo URL</label>
+              <input class="input-field" id="url" type="url" name="url" placeholder="https://example.com" required />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <div class="notes-option form-option">
+              <label class="form-label" for="Notes">Notes</label>
+              <textarea name="notes" class="input-field" id="notes" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-button-container">
+          <input class="submit-button" type="submit" value="SAVE" />
+        </div>
+      </form>
       <div data-view="entries" class="hidden"></div>
-    </main>
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+    </div>
+  </main>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
 </html>
