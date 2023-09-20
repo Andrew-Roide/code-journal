@@ -1,0 +1,61 @@
+@media screen and (max-width: 768px) {
+  .container {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-option {
+    padding: 5px 0;
+  }
+}
+
+header {
+  background-color: rgb(67, 0, 99);
+  color: white;
+}
+
+body {
+  background-color: rgba(218, 218, 218, 0.397);
+}
+
+.form-option {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+}
+
+.img-preview {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.form-label {
+  padding-bottom: 10px;
+}
+
+.input-field {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 4px;
+}
+
+.notes-option {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0.75rem;
+}
+
+.submit-button {
+  background-color: rgb(67, 0, 99);
+  color: white;
+  padding: 7px;
+  border-radius: 4px;
+}
