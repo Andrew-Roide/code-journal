@@ -18,8 +18,9 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="column-full">
+        <div class="column-full nav-bar">
           <h1>Code Journal</h1>
+          <a class="entries-link" onclick="viewSwap('entries')">Entries</a>
         </div>
       </div>
     </div>
@@ -61,13 +62,20 @@
       </form>
     </div>
   </main>
-  <div data-view="entries" class="container">
+  <div data-view="entries" class="container hidden">
     <div class="row">
-      <h2>Entries</h2>
-      <button>NEW</button>
+      <div class="column-full entries-title-container">
+        <div class="entries-title">
+          <h1>Entries</h1>
+        </div>
+        <div>
+          <a class="new" onclick="viewSwap('entry-form')">New</a>
+        </div>
     </div>
+  </div>
       <div class="row">
         <ul class="entry-list">
+          <li class="noEntries">No Entries To Show</li>
         </ul>
     </div>
   </div>

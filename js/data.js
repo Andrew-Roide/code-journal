@@ -7,45 +7,42 @@ let data = {
   nextEntryId: 1,
 };
 
-const previousData = localStorage.getItem('javascript-local-storage');
-
 window.addEventListener('beforeunload', (event) => {
   const dataModel = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', dataModel)
+  localStorage.setItem('javascript-local-storage', dataModel);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  const previousData = localStorage.getItem('javascript-local-storage');
+
   if (previousData !== null) {
     data = JSON.parse(previousData);
     data.entries.forEach((entry) => {
       renderEntry(entry);
     });
+    viewSwap(data.view);
+      if (data.entries.length > 0) {
+        toggleNoEntries();
+      }
   } else {
-    const entryList = document.querySelector('.entry-list');
-    const newLi = document.createElement("li");
-    newLi.innerHTML = 'No entries to show';
-    newLi.classList.add('noEntries');
-    entryList.appendChild(newLi);
-  };
+    viewSwap(data.view)
+  }
 });
 
 function renderEntry(entry) {
   const entryList = document.querySelector('.entry-list');
-
-
   const newLi = document.createElement("li");
 
-  newLi.innerHTML = '<li> <img src= "' + entry.url + '" alt = ""/> <div>Title ' + entry.title + '</div> <div>notes ' + entry.notes + '</div></li > ' ; // You can also set other properties like className, id, etc.
-
+  newLi.innerHTML = '<li class="row entry-container"> <div class="column-half"><img class="img-preview" src= "' + entry.url + '"/></div> <div class="column-half entry-info-container"><div class="entry-title">' + entry.title + '</div> <div class="entry-notes">' + entry.notes + '</div></div></li > ' ;
   entryList.appendChild(newLi);
 }
 
 function toggleNoEntries() {
   const noEntries = document.querySelector('.noEntries');
-  if (noEntries.classList.contains('hide')) {
-      noEntries.classList.remove('hide');
+  if (noEntries.classList.contains('hidden')) {
+      noEntries.classList.remove('hidden');
   } else {
-      noEntries.classList.add('hide');
+      noEntries.classList.add('hidden');
   }
 }
 
@@ -54,21 +51,21 @@ function viewSwap(elementToSwap) {
   const entries = document.querySelector('[data-view="entries"]');
 
   if (elementToSwap === 'entries') {
-    const previousData = localStorage.getItem('javascript-local-storage');
-    const dataModel = JSON.stringify(data);
-    dataModel.view = 'entries';
-    localStorage.setItem('javascript-local-storage', dataModel);
+      data.view = 'entries';
 
-    entries.classList.remove('hide');
-    entryForm.classList.add('hide');
+    const dataModel = JSON.stringify(data);
+
+    localStorage.setItem('javascript-local-storage', dataModel);
+    entries.classList.remove('hidden');
+    entryForm.classList.add('hidden');
 
   } else {
-    const previousData = localStorage.getItem('javascript-local-storage');
-    const dataModel = JSON.stringify(data);
-    dataModel.view = 'entry-form';
-    localStorage.setItem('javascript-local-storage', dataModel);
+    data.view = 'entry-form';
 
-    entries.classList.add('hide')
-    entryForm.classList.remove('hdie');
+    const dataModel = JSON.stringify(data);
+
+    localStorage.setItem('javascript-local-storage', dataModel);
+    entries.classList.add('hidden')
+    entryForm.classList.remove('hidden');
   }
 }
