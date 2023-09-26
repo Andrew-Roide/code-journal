@@ -17,6 +17,7 @@ form.addEventListener('submit', (event) => {
     url: imgPreview.getAttribute('src'),
     notes: notes.value,
     entryId: data.nextEntryId
+
   };
 
   data.nextEntryId++;
@@ -25,6 +26,10 @@ form.addEventListener('submit', (event) => {
   form.reset();
   renderEntry(newObject);
   viewSwap('entries');
+
+  if (data.entries.length > 0) {
+    toggleNoEntries();
+  }
 });
 
 
@@ -82,7 +87,7 @@ function renderEntry(entry) {
 function toggleNoEntries() {
   const noEntries = document.querySelector('.noEntries');
 
-  if (noEntries.classList.contains('hidden')) {
+  if (noEntries.classList.contains('hide')) {
     noEntries.classList.remove('hidden');
   } else {
     noEntries.classList.add('hidden');
