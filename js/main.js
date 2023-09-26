@@ -109,18 +109,12 @@ function viewSwap(elementToSwap) {
   if (elementToSwap === 'entries') {
     data.view = 'entries';
 
-    const dataModel = JSON.stringify(data);
-
-    localStorage.setItem('javascript-local-storage', dataModel);
     entries.classList.remove('hidden');
     entryForm.classList.add('hidden');
 
   } else {
     data.view = 'entry-form';
 
-    const dataModel = JSON.stringify(data);
-
-    localStorage.setItem('javascript-local-storage', dataModel);
     entries.classList.add('hidden')
     entryForm.classList.remove('hidden');
   }
