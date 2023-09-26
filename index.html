@@ -18,8 +18,9 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="column-full">
+        <div class="column-full nav-bar">
           <h1>Code Journal</h1>
+          <a class="entries-link">Entries</a>
         </div>
       </div>
     </div>
@@ -55,14 +56,29 @@
             </div>
           </div>
         </div>
-
         <div class="submit-button-container">
           <input class="submit-button" type="submit" value="SAVE" />
         </div>
       </form>
-      <div data-view="entries" class="hidden"></div>
     </div>
   </main>
+  <div data-view="entries" class="container hidden">
+    <div class="row">
+      <div class="column-full entries-title-container">
+        <div class="entries-title">
+          <h1>Entries</h1>
+        </div>
+        <div>
+          <a class="new">New</a>
+        </div>
+    </div>
+  </div>
+      <div class="row">
+        <ul class="entry-list">
+          <li class="noEntries">No Entries To Show</li>
+        </ul>
+    </div>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

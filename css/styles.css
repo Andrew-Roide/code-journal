@@ -19,6 +19,10 @@ body {
   background-color: rgba(218, 218, 218, 0.397);
 }
 
+li {
+  list-style: none;
+}
+
 .form-option {
   display: flex;
   flex-direction: column;
@@ -58,4 +62,52 @@ body {
   color: white;
   padding: 7px;
   border-radius: 4px;
+}
+
+.entries-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new {
+  background-color: rgb(67, 0, 99);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.entry-container {
+  padding-bottom: 10%;
+}
+
+.entry-list {
+  padding-left: 20px;
+}
+
+.entry-info-container {
+  padding: 20px 0 0 20px;
+}
+
+.entry-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.nav-bar {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.entries-link {
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+  padding: 20px;
+  cursor: pointer;
 }
