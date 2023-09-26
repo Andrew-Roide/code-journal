@@ -78,6 +78,7 @@ li {
   font-weight: bold;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
 }
 
 .entry-container {
