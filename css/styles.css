@@ -94,6 +94,8 @@ li {
 }
 
 .entry-title {
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 20px;
@@ -104,10 +106,16 @@ li {
   text-align: center;
   align-items: center;
 }
+
 .entries-link {
   color: white;
   font-size: 30px;
   text-decoration: none;
   padding: 20px;
+  cursor: pointer;
+}
+
+.fa-solid,
+.fa-pen {
   cursor: pointer;
 }
