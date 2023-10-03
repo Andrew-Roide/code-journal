@@ -6,6 +6,7 @@ let data = {
   editing: null,
   nextEntryId: 1,
 };
+
 var previousData = localStorage.getItem('javascript-local-storage');
 
 if (previousData !== null) {
