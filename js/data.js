@@ -7,7 +7,7 @@ let data = {
   nextEntryId: 1,
 };
 
-var previousData = localStorage.getItem('javascript-local-storage');
+const previousData = localStorage.getItem('javascript-local-storage');
 
 if (previousData !== null) {
   data = JSON.parse(previousData);

@@ -6,6 +6,8 @@ const notes = document.querySelector('#notes');
 const viewEntries = document.querySelector('.entries-link');
 const viewEntryForm = document.querySelector('.new');
 const ulElement = document.querySelector('.entry-list');
+const deleteButton = document.querySelector('.delete-button');
+const submitBttnContainer = document.querySelector('.submit-button-container');
 
 photoURL.addEventListener('input', (event) => {
   if (event.target.value === '') {
@@ -38,6 +40,7 @@ form.addEventListener('submit', (event) => {
     document.querySelector('.title-switch').textContent = 'New Entry';
     imgPreview.setAttribute('src', './images/placeholder-image-square.jpg');
     form.reset();
+    toggleDeleteButton();
     viewSwap('entries');
   } else {
     data.nextEntryId++;
@@ -46,19 +49,13 @@ form.addEventListener('submit', (event) => {
     form.reset();
     renderEntry(newObject);
     viewSwap('entries');
-
-    if (data.entries.length > 0) {
-      toggleNoEntries();
-    }
+    toggleNoEntries();
   }
 });
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const previousData = localStorage.getItem('javascript-local-storage');
-
   if (previousData !== null) {
-    data = JSON.parse(previousData);
     data.entries.forEach((entry) => {
       renderEntry(entry);
     });
@@ -113,10 +110,10 @@ function renderEntry(entry) {
 function toggleNoEntries() {
   const noEntries = document.querySelector('.noEntries');
 
-  if (noEntries.classList.contains('hide')) {
-    noEntries.classList.remove('hidden');
-  } else {
+  if (data.entries.length > 0) {
     noEntries.classList.add('hidden');
+  } else {
+    noEntries.classList.remove('hidden');
   }
 }
 
@@ -137,12 +134,16 @@ function viewSwap(elementToSwap) {
 
     entries.classList.remove('hidden');
     entryForm.classList.add('hidden');
+    const dataModel = JSON.stringify(data);
+    localStorage.setItem('javascript-local-storage', dataModel);
 
   } else {
     data.view = 'entry-form';
 
     entries.classList.add('hidden');
     entryForm.classList.remove('hidden');
+    const dataModel = JSON.stringify(data);
+    localStorage.setItem('javascript-local-storage', dataModel);
   }
 }
 
@@ -152,6 +153,7 @@ ulElement.addEventListener('click', (event) => {
     const clickedEntry = event.target.closest('.row .entry-container');
     const dataEntryIdString = clickedEntry.getAttribute('data-entry-id');
     const dataEntryIdNumber = parseInt(dataEntryIdString);
+    toggleDeleteButton();
 
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === dataEntryIdNumber) {
@@ -161,7 +163,82 @@ ulElement.addEventListener('click', (event) => {
         url.value = data.editing.url;
         notes.value = data.editing.notes;
         imgPreview.src = data.editing.url;
+        const dataModel = JSON.stringify(data);
+        localStorage.setItem('javascript-local-storage', dataModel);
       }
     }
   }
 });
+
+function toggleDeleteButton() {
+  if (submitBttnContainer.classList.contains('submit-button-container')) {
+    deleteButton.classList.remove('hidden');
+    submitBttnContainer.setAttribute('class','submit-button-container-with-delete')
+  } else {
+    deleteButton.classList.add('hidden');
+    submitBttnContainer.setAttribute('class', 'submit-button-container');
+  }
+}
+
+deleteButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  renderModal();
+
+  const yesButton = document.querySelector('.modal-button-yes');
+  const noButton = document.querySelector('.modal-button-no');
+  const modal = document.querySelector('.modal');
+  const existingLi = document.querySelector(`li[data-entry-id="${data.editing.entryId}"]`);
+  const entryIdToRemove = data.editing.entryId;
+
+  noButton.addEventListener('click', (event) => {
+    modal.remove();
+  });
+
+  yesButton.addEventListener('click', (event) => {
+    const indexToRemove = data.entries.findIndex(entry => entry.entryId === entryIdToRemove);
+    const dataModel = JSON.stringify(data);
+
+    localStorage.setItem('javascript-local-storage', dataModel);
+    data.entries.splice(indexToRemove, 1);
+    data.editing = null;
+    existingLi.remove();
+    modal.remove();
+    viewSwap('entries');
+    document.querySelector('.title-switch').textContent = 'New Entry';
+    imgPreview.setAttribute('src', './images/placeholder-image-square.jpg');
+    form.reset();
+    toggleDeleteButton();
+    toggleNoEntries();
+  });
+});
+
+
+function renderModal() {
+  const modalContainer = document.createElement('div');
+  modalContainer.classList.add('modal');
+
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');
+
+  const paragraph = document.createElement('p');
+  paragraph.textContent = 'Are you sure you want to delete entry?';
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('modal-button-container');
+
+  const yesButton = document.createElement('button');
+  yesButton.setAttribute('class', 'modal-button-yes');
+  yesButton.textContent = 'Yes';
+
+  const noButton = document.createElement('button');
+  noButton.setAttribute('class','modal-button-no');
+  noButton.textContent = 'No';
+
+  buttonContainer.appendChild(yesButton);
+  buttonContainer.appendChild(noButton);
+  modalContent.appendChild(paragraph);
+  modalContent.appendChild(buttonContainer);
+  modalContainer.appendChild(modalContent);
+  document.body.appendChild(modalContainer);
+  return modalContainer;
+}
