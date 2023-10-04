@@ -55,10 +55,7 @@ form.addEventListener('submit', (event) => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const previousData = localStorage.getItem('javascript-local-storage');
-
   if (previousData !== null) {
-    data = JSON.parse(previousData);
     data.entries.forEach((entry) => {
       renderEntry(entry);
     });
